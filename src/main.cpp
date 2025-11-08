@@ -20,10 +20,6 @@ const float DAC_BRAKE_OFF = V_BRAKE_OFF / DAC_STEP;
 const float DAC_BRAKE_FULL = V_BRAKE_FULL / DAC_STEP;
 const float DAC_RANGE = DAC_BRAKE_OFF - DAC_BRAKE_FULL;
 
-#define DAC_CORRECTION_START 0.80
-#define DAC_CORRECTION_FACTOR 0.5976
-const float DAC_CORRECTION_OFFSET = DAC_CORRECTION_START * (1 - DAC_CORRECTION_FACTOR);
-
 HX711 lcReader;
 float lcValue;
 uint16_t dacValue;
@@ -46,7 +42,6 @@ void loop()
 {
   lcValue = lcReader.get_value(2) / LOAD_CELL_SCALING;
 
-  if (lcValue > DAC_CORRECTION_START) { lcValue = lcValue * DAC_CORRECTION_FACTOR + DAC_CORRECTION_OFFSET; }
   if (lcValue < 0) { lcValue = 0; }
   if (lcValue > 1) { lcValue = 1; }
 
