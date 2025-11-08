@@ -5,7 +5,7 @@
 #define LOAD_CELL_DOUT_PIN PD3
 #define LOAD_CELL_SCK_PIN PD2
 #define LOAD_CELL_TARE_REPS 10
-#define LOAD_CELL_SCALING 660000.0
+#define LOAD_CELL_SCALING 1.20e-6
 
 #define DAC_ADDR 0x60
 const uint8_t DAC_CTRL_BYTE_WRITE = 0b01000000;
@@ -40,15 +40,15 @@ void setup()
 
 void loop()
 {
-  lcValue = lcReader.get_value(2) / LOAD_CELL_SCALING;
+  lcValue = lcReader.get_value(2) * LOAD_CELL_SCALING;
 
   if (lcValue < 0) { lcValue = 0; }
   if (lcValue > 1) { lcValue = 1; }
 
-  Serial.print(">lcValue:");
-  Serial.print(millis());
-  Serial.print(":");
-  Serial.println(lcValue, 3);
+  // Serial.print(">lcValue:");
+  // Serial.print(millis());
+  // Serial.print(":");
+  // Serial.println(lcValue, 3);
 
   dacValue = DAC_BRAKE_OFF - DAC_RANGE * lcValue;
 
