@@ -26,6 +26,8 @@ uint16_t dacValue;
 
 void setup()
 {
+  Wire.begin();
+
   Serial.begin(115200);
   Serial.println("Logitech Wheel Brake Controller Starting...");
 
@@ -34,8 +36,6 @@ void setup()
   
   lcReader.tare(LOAD_CELL_TARE_REPS);
   Serial.println("LC zeroed...");
-
-  Wire.begin();
 }
 
 void loop()
