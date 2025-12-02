@@ -5,14 +5,14 @@
 #define LOAD_CELL_DOUT_PIN PD3
 #define LOAD_CELL_SCK_PIN PD2
 #define LOAD_CELL_TARE_REPS 10
-#define LOAD_CELL_SCALING 1.20e-6
+#define LOAD_CELL_SCALING 1.10e-6
 
 #define DAC_ADDR 0x60
 const uint8_t DAC_CTRL_BYTE_WRITE = 0b01000000;
 
-#define V_VCC 3.26
+#define V_VCC 3.270
 #define V_BRAKE_OFF 2.93
-#define V_BRAKE_FULL 1.10
+#define V_BRAKE_FULL 1.05
 
 #define DAC_RESOLUTION 4096
 #define DAC_STEP (V_VCC / DAC_RESOLUTION)
